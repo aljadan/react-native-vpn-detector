@@ -1,6 +1,6 @@
 {
   "name": "react-native-vpn-detector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Native module to detect VPN connection",
   "main": "build/index.js",
   "types": "build/index.d.ts",
