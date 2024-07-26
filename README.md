@@ -2,16 +2,6 @@
 
 **React Native module to detect VPN connection**
 
-## 📚 Table of Contents
-
-- [📦 Installation](#installation)
-- [🚀 Usage](#usage)
-  - [🧩 useIsVpnActive](#useIsVpnActive)
-  - [🔍 isVpnActive](#isVpnActive)
-  - [📡 addEventListener](#addEventListener)
-- [🤝 Contributing](#contributing)
-- [📜 License](#license)
-
 ## 📦 Installation
 
 To install the module, you can use npm:
@@ -21,6 +11,10 @@ To install the module, you can use npm:
 npx expo install @react-native-community/netinfo
 npm install react-native-vpn-detector
 ```
+
+## ⚠️ Note
+
+The VPN detector does not work on simulators. Please test on a real device.
 
 ## 🚀 Usage
 
@@ -33,7 +27,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { useIsVpnActive } from "react-native-vpn-detector";
 
-const VpnStatus = () => {
+const App = () => {
   const isVpnActive = useIsVpnActive();
 
   return (
@@ -54,7 +48,7 @@ import { View, Text } from "react-native";
 import { isVpnActive } from "react-native-vpn-detector";
 
 const value = isVpnActive();
-const VpnStatus = () => {
+const App = () => {
   return (
     <View>
       <Text>VPN is {value ? "active" : "inactive"}</Text>
@@ -72,7 +66,7 @@ import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import { addEventListener } from "react-native-vpn-detector";
 
-const VpnStatus = () => {
+const App = () => {
   useEffect(() => {
     const listener = (isVpnActive) => {
       console.log(`VPN is now ${isVpnActive ? "active" : "inactive"}`);
