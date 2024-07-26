@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "react-native-vpn-detector": ["../src/index"],
+      "react-native-vpn-detector/*": ["../src/*"]
+    }
+  }
+}
