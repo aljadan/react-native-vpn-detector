@@ -15,7 +15,11 @@ class VpnDetectorModule : Module() {
 
     // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
     Function("isVpnActive") {
-      false
+      val connectivityManager = getSystemService(ConnectivityManager::class.java) as ConnectivityManager
+      val activeNetwork = connectivityManager.activeNetwork
+      val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+
+      return networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) ?: false
     }
   }
 }

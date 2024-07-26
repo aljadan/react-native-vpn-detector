@@ -12,7 +12,17 @@ public class VpnDetectorModule: Module {
 
     // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
     Function("isVpnActive") {
-      return false;
+      let cfDict = CFNetworkCopySystemProxySettings()
+      let nsDict = cfDict?.takeRetainedValue() as NSDictionary?
+      let keys = nsDict?["__SCOPED__"] as? NSDictionary
+    
+      for key: String in keys?.allKeys as? [String] ?? [] {
+        if (key.contains("tap") || key.contains("tun") || key.contains("ppp") || key.contains("ipsec") || key.contains("utun")) {
+          return true
+        }
+      }
+    
+      return false
     }
   }
 }
