@@ -24,6 +24,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "07268eaf-650f-478a-96cc-4228f4609ebc"
+      }
+    },
+    "owner": "abdulaziz1"
   }
 }

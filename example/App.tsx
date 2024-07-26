@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
-import * as VpnDetector from "react-native-vpn-detector";
+import { useIsVpnActive } from "react-native-vpn-detector";
 
 export default function App() {
+  const isVpnActive = useIsVpnActive();
   return (
     <View style={styles.container}>
-      <Text>
-        {VpnDetector.isVpnActive() ? "VPN is active" : "VPN is not active"}
-      </Text>
+      <Text>{isVpnActive ? "VPN is active" : "VPN is not active"}</Text>
     </View>
   );
 }
