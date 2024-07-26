@@ -1,35 +1,102 @@
-# react-native-vpn-detector
+# 🌐 react-native-vpn-detector
 
-React Native module to detect VPN connection
+**React Native module to detect VPN connection**
 
-# API documentation
+## 📚 Table of Contents
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/react-native-vpn-detector.md)
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/react-native-vpn-detector/)
+- [📦 Installation](#installation)
+- [🚀 Usage](#usage)
+  - [🧩 useIsVpnActive](#useIsVpnActive)
+  - [🔍 isVpnActive](#isVpnActive)
+  - [📡 addEventListener](#addEventListener)
+- [🤝 Contributing](#contributing)
+- [📜 License](#license)
 
-# Installation in managed Expo projects
+## 📦 Installation
 
-For [managed](https://docs.expo.dev/archive/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
+To install the module, you can use npm:
 
-# Installation in bare React Native projects
-
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
-
-### Add the package to your npm dependencies
-
-```
+```bash
+## You must install @react-native-community/netinfo first
+npx expo install @react-native-community/netinfo
 npm install react-native-vpn-detector
 ```
 
-### Configure for iOS
+## 🚀 Usage
 
-Run `npx pod-install` after installing the npm package.
+### 🧩 `useIsVpnActive`
 
+The `useIsVpnActive` hook provides a way to use the VPN connection status within a React component.
 
-### Configure for Android
+```javascript
+import React from "react";
+import { View, Text } from "react-native";
+import { useIsVpnActive } from "react-native-vpn-detector";
 
+const VpnStatus = () => {
+  const isVpnActive = useIsVpnActive();
 
+  return (
+    <View>
+      <Text>VPN is {isVpnActive ? "active" : "inactive"}</Text>
+    </View>
+  );
+};
+```
 
-# Contributing
+### 🔍 `isVpnActive`
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+The `isVpnActive` function checks if a VPN connection is active.
+
+```javascript
+import React from "react";
+import { View, Text } from "react-native";
+import { isVpnActive } from "react-native-vpn-detector";
+
+const value = isVpnActive();
+const VpnStatus = () => {
+  return (
+    <View>
+      <Text>VPN is {value ? "active" : "inactive"}</Text>
+    </View>
+  );
+};
+```
+
+### 📡 `addEventListener`
+
+The `addEventListener` function listens for changes in the VPN connection status.
+
+```javascript
+import React, { useEffect } from "react";
+import { View, Text } from "react-native";
+import { addEventListener } from "react-native-vpn-detector";
+
+const VpnStatus = () => {
+  useEffect(() => {
+    const listener = (isVpnActive) => {
+      console.log(`VPN is now ${isVpnActive ? "active" : "inactive"}`);
+    };
+
+    const unsubscribe = addEventListener(listener);
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <View>
+      <Text>Listening for VPN status changes...</Text>
+    </View>
+  );
+};
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any bugs or enhancements.
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
