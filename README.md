@@ -20,7 +20,7 @@ The VPN detector does not work on simulators. Please test on a real device.
 
 ### 🧩 `useIsVpnActive`
 
-The `useIsVpnActive` hook provides a way to use the VPN connection status within a React component.
+The `useIsVpnActive` hook lets your component reactively track whether a VPN connection is active
 
 ```javascript
 import React from "react";
